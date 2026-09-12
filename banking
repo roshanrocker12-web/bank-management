@@ -1,0 +1,41 @@
+# bank-management
+import java.util.Scanner;
+
+class BankAccount{
+    String name,type;
+    int no;
+    double bal;
+    
+    BankAccount(String n,int a,String t,double b){
+        name=n; no=a; type=t; bal=b;
+        System.out.println("Account Created");
+    }
+    void deposit(double x){
+        if(x<=0) System.out.println("Invalid deposit");
+        else{ bal+=x; System.out.println("Deposited: "+x); }
+    }
+    void withdraw(double x){
+        if(x<=0) System.out.println("Invalid withdraw");
+        else if(x>bal) System.out.println("Insufficient Balance");
+        else{ bal-=x; System.out.println("Withdrawn: "+x); }
+    }
+    void enquiry(){
+        System.out.println(name+" | "+no+" | "+type+" | Bal: "+bal);
+    }
+}
+
+public class Main{
+    public static void main(String[] a){
+        Scanner sc=new Scanner(System.in);
+        System.out.print("Name: "); String n=sc.nextLine();
+        System.out.print("Acc No: "); int no=sc.nextInt(); sc.nextLine();
+        System.out.print("Type: "); String t=sc.nextLine();
+        System.out.print("Initial Bal: "); double b=sc.nextDouble();
+        
+        BankAccount ac=new BankAccount(n,no,t,b);
+        
+        System.out.print("Deposit Amt: "); ac.deposit(sc.nextDouble());
+        System.out.print("Withdraw Amt: "); ac.withdraw(sc.nextDouble());
+        ac.enquiry();
+    }
+}
